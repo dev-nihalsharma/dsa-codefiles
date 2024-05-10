@@ -45,6 +45,40 @@ class BinarySearchTree():
                 temp = temp.right
         return False
     
+    def BreathFirstSearch(self):
+        """
+        returns all the elements of Tree, from the top
+        """
+        current_node = self.root
+        queues = []
+        results = []
+
+        queues.append(current_node)
+        while len(queues) > 0:
+            current_node = queues.pop(0)
+            results.append(current_node.value)
+            if current_node.left is not None:
+                queues.append(current_node.left)
+            if current_node.right is not None:
+                queues.append(current_node.right)
+
+        return results
+    
+    def DFSPreOrder(self):
+        """
+        Depth First Search - PreOder method
+        """
+        results = []
+        def traverse(current_node):
+            results.append(current_node.value)
+            if current_node.left is not None:
+                traverse(current_node.left)
+            if current_node.right is not None:
+                traverse (current_node.right)
+
+        traverse(self.root)            
+        return results
+
         
 
 bst = BinarySearchTree()
@@ -60,4 +94,6 @@ print(bst.root.right.value)
 print(bst.contains(3))
 print(bst.contains(5))
 
+print(bst.BreathFirstSearch())
+print(bst.DFSPreOrder())
 
